@@ -8,7 +8,7 @@
 | encrypted_password | string   | null: false               |
 | nickname           | string   | null: false               |
 | birthday           | date     | null: false               | 
-| famil_yname        | string   | null: false               |
+| family_name        | string   | null: false               |
 | first_name         | string   | null: false               |
 | family_name_kana   | string   | null: false               |
 | first_name_kana    | string   | null: false               |
@@ -25,12 +25,12 @@
 | ---------- | ---------- | ------------------------------ |
 | title      | string     | null: false                    |
 | concept    | text       | null: false                    |
-| users      | references | null: false, foreign_key: true |
-|category_id | int        | null: false                    |
-|status_id   | int        | null: false                    |
-|load_id     | int        | null: false                    |
-|region_id   | int        | null: false                    |
-|days_id     | int        | null: false                    | 
+| user       | references | null: false, foreign_key: true |
+|category_id | integer    | null: false                    |
+|status_id   | integer    | null: false                    |
+|load_id     | integer    | null: false                    |
+|region_id   | integer    | null: false                    |
+| send_id    | integer    | null: false                    | 
 |price       | integer    | null: false                    | 
 
 
@@ -41,10 +41,10 @@
 
 ## buys テーブル
 
-| Column    | Type       | Options                        |
-| --------- | ---------- | ------------------------------ |
-| deliverys | references | null: false, foreign_key: true |
-| shohin_id | int        | null: false                    |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| buyer_user_id | references | null: false, foreign_key: true |
+| item_id       | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -57,11 +57,12 @@
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
 | postcode       | string     | null: false                    |
-| prefectures_id | int        | null: false                    |
+| prefecture_id  | intger     | null: false                    |
 | municipalities | string     | null: false                    |
 | address        | string     | null: false                    |
 | phonenumber    | string     | null: false                    |
-| building_name  | string     | null: false                    |
+| building_name  | string     |                                |
+| buy_id         | references | null: false, foreign_key: true |
 
 
 ### Association
