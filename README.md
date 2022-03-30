@@ -21,17 +21,17 @@
 
 ## items テーブル
 
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
-| title      | string     | null: false                    |
-| concept    | text       | null: false                    |
-| user       | references | null: false, foreign_key: true |
-|category_id | integer    | null: false                    |
-|status_id   | integer    | null: false                    |
-|load_id     | integer    | null: false                    |
-|region_id   | integer    | null: false                    |
-| send_id    | integer    | null: false                    | 
-|price       | integer    | null: false                    | 
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| title         | string     | null: false                    |
+| concept       | text       | null: false                    |
+| user          | references | null: false, foreign_key: true |
+|category_id    | integer    | null: false                    |
+|status_id      | integer    | null: false                    |
+|load_id        | integer    | null: false                    |
+|prefecture_id  | integer    | null: false                    |
+|shipping_day_id| integer    | null: false                    | 
+|price          | integer    | null: false                    | 
 
 
 ### Association
@@ -43,8 +43,8 @@
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| buyer_user_id | references | null: false, foreign_key: true |
-| item_id       | references | null: false, foreign_key: true |
+| user          | references | null: false, foreign_key: true |
+| item          | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -52,7 +52,7 @@
 - belongs_to :user
 - has_one :delivery
 
-## deliverys テーブル
+## deliveries テーブル
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
@@ -62,7 +62,7 @@
 | address        | string     | null: false                    |
 | phonenumber    | string     | null: false                    |
 | building_name  | string     |                                |
-| buy_id         | references | null: false, foreign_key: true |
+| buy            | references | null: false, foreign_key: true |
 
 
 ### Association
