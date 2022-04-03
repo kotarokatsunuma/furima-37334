@@ -95,6 +95,26 @@ require 'rails_helper'
       @user.valid?
       expect(@user.errors.full_messages).to include("Password is invalid")
      end
+     it "姓（全角）に半角文字が含まれていると登録できない" do
+      @user.family_name = 'abe'  
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Family name is invalid")
+     end
+     it "名（全角）に半角文字が含まれていると登録できない" do
+      @user.first_name = 'taro'  
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name is invalid")
+     end
+     it "姓（カナ）にカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない" do
+      @user.family_name_kana = 'かな'  
+      @user.valid?
+      expect(@user.errors.full_messages).to include()
+     end
+     it "名（カナ）にカタカナ以外の文字（平仮名・漢字・英数字・記号）が含まれていると登録できない" do
+      @user.first_name_kana = 'かな'  
+      @user.valid?
+      expect(@user.errors.full_messages).to include()
+     end
     end
    end
  end
