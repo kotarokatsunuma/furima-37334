@@ -80,6 +80,21 @@ require 'rails_helper'
       @user.valid?
       expect(@user.errors.full_messages).to include("First name kana can't be blank")
      end
+     it "英字のみのパスワードでは登録できない" do
+      @user.password = 'aaaaaa'  
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+     end
+     it "数字のみのパスワードでは登録できない" do
+      @user.password = '111111'  
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+     end
+     it "全角文字を含むパスワードでは登録できない" do
+      @user.password = 'あああAAA'  
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+     end
     end
    end
  end
