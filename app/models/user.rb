@@ -14,8 +14,11 @@ class User < ApplicationRecord
   validates_format_of :password, with: PASSWORD_REGEX
 
 
-  with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ } do
+  with_options  format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ } do
     validates :first_name
     validates :family_name
   end
+
+  validates :family_name_kana, format: {with: /\A[ァ-ヶー]+\z/, message: "is invalid. Input full-width katakana characters."}
+  validates :first_name_kana, format: {with: /\A[ァ-ヶー]+\z/, message: "is invalid. Input full-width katakana characters."}
 end
