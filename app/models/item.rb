@@ -8,13 +8,13 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :title, :text, presence: true
-  validates :concept, :text, presence: true
+  validates :title,  presence: true
+  validates :concept,  presence: true
 
 
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank" } 
   validates :status_id, numericality: { other_than: 1 , message: "can't be blank" } 
   validates :load_id, numericality: { other_than: 1 , message: "can't be blank" } 
-  validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank" } 
+  validates :prefecture_id, numericality: { other_than: 0 , message: "can't be blank" } 
   validates :shipping_day_id, numericality: { other_than: 1 , message: "can't be blank" } 
 end
