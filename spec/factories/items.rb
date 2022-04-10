@@ -2,10 +2,16 @@ FactoryBot.define do
   factory :item do
     title            {"タイトル"}
     concept          {"コンセプト"}
-    category_id      {"メンズ"}
-    status_id        {"新品・未使用"}
-    load_id          {"着払い(購入者負担)"}
-    prefecture_id    {"北海道"}
-    shipping_day_id  {"1~2日で発送"}
+    category_id      {"2"}
+    status_id        {"2"}
+    load_id          {"2"}
+    prefecture_id    {"1"}
+    shipping_day_id  {"2"}
+    price            {"300"}
+    association :user 
+
+    after(:build) do |message|
+      message.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
+    end
   end
 end
