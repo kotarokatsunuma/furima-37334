@@ -132,14 +132,15 @@
       <% @items.each do |item| %>
        
       <li class='list'>
+      <%= link_to item_path(item.id) do %>
       <div class='item-img-content'>
       <%= image_tag item.image, class: "item-img" %>
       <%# 商品が売れていればsold outを表示しましょう %>
       <%# if @items.length == 0 %>
-      <div class='sold-out'>
+      <%# <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-       </div>
+       </div> %>
       <%# end %>
       <%# 商品が売れていればsold outを表示しましょう %>
 
@@ -158,7 +159,8 @@
           
         <% end %>
          </li>
-      
+         <% end %>
+
       <%if @items.length == 0 %>
       <li class='list'>
         <%= link_to '#' do %>
