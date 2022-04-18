@@ -1,6 +1,7 @@
 class BuyDelivery
   include ActiveModel::Model
-  attr_accessor :postcode, :prefecture_id, :municipality, :address, :phonenumber, :building_name, :item_id, :use_id
+  attr_accessor :postcode, :prefecture_id, :municipality, :address, :phonenumber, :building_name, :item_id, :user_id, :buy_id
+  extend ActiveHash::Associations::ActiveRecordExtensions
 
   with_options presence: true do
     validates :user_id
@@ -14,6 +15,6 @@ class BuyDelivery
 
   def save
     buy = Buy.create(user_id: user_id, item_id: item_id)
-    Delivery.create(postcode: postcode,prefecture_id: prefecture_id, municipality: municipality,address: address,phonenumber: phonenumber,building_name: building_name,buy_id: buy.id)
+    Delivery.create(postcode: postcode, prefecture_id: prefecture_id, municipality: municipality, address: address, phonenumber: phonenumber, building_name: building_name, buy_id: buy.id)
   end
 end
