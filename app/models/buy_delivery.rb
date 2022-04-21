@@ -1,6 +1,6 @@
 class BuyDelivery
   include ActiveModel::Model
-  attr_accessor :postcode, :prefecture_id, :municipality, :address, :phonenumber, :building_name, :item_id, :user_id, :buy_id
+  attr_accessor :postcode, :prefecture_id, :municipality, :address, :phonenumber, :building_name, :item_id, :user_id, :buy_id, :token
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   with_options presence: true do
@@ -8,6 +8,7 @@ class BuyDelivery
     validates :item_id
     validates :municipality
     validates :address
+    validates :token
     validates :phonenumber, format: {with: /\A\d{10,11}\z/, message: "is invalid"}
     validates :postcode, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
   end
