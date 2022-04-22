@@ -5,7 +5,7 @@ class BuysController < ApplicationController
   def index
     @buy_delivery = BuyDelivery.new
 
-    redirect_to root_path if (user_signed_in? && @item.buy.present?) || (current_user.id == @item.user.id)
+    redirect_to root_path if @item.buy.present? || (current_user.id == @item.user.id)
   end
 
   def create
