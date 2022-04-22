@@ -1,7 +1,6 @@
 class BuyDelivery
   include ActiveModel::Model
-  attr_accessor :postcode, :prefecture_id, :municipality, :address, :phonenumber, :building_name, :item_id, :user_id, :buy_id,
-                :token
+  attr_accessor :postcode, :prefecture_id, :municipality, :address, :phonenumber, :building_name, :item_id, :user_id, :token
 
   extend ActiveHash::Associations::ActiveRecordExtensions
 

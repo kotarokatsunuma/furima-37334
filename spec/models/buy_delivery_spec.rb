@@ -62,6 +62,11 @@ RSpec.describe BuyDelivery, type: :model do
         @buy_delivery.valid?
         expect(@buy_delivery.errors.full_messages).to include('Phonenumber is invalid')
       end
+      it 'phonenumberは半角数字以外が含まれている場合は購入できないこと' do
+        @buy_delivery.phonenumber = '090-1234-5678'
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include('Phonenumber is invalid')
+      end
       it 'userが紐付いていないと保存できないこと' do
         @buy_delivery.user_id = nil
         @buy_delivery.valid?
