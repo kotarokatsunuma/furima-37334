@@ -1,16 +1,14 @@
 class BuysController < ApplicationController
   before_action :authenticate_user!, only: :index
-  before_action :set_buy, only: [:index, :create ]
+  before_action :set_buy, only: [:index, :create]
 
   def index
-    
     @buy_delivery = BuyDelivery.new
 
     redirect_to root_path if (user_signed_in? && @item.buy.present?) || (current_user.id == @item.user.id)
   end
 
   def create
-    
     @buy_delivery = BuyDelivery.new(buy_params)
     if @buy_delivery.valid?
       pay_item
@@ -41,5 +39,4 @@ class BuysController < ApplicationController
   def set_buy
     @item = Item.find(params[:item_id])
   end
-
 end
