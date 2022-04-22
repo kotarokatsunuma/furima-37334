@@ -52,8 +52,13 @@ RSpec.describe BuyDelivery, type: :model do
         @buy_delivery.valid?
         expect(@buy_delivery.errors.full_messages).to include("Phonenumber can't be blank")
       end
-      it 'phonenumberは10桁以上11桁以内の半角数値でないと保存できないこと' do
-        @buy_delivery.phonenumber = '090-1234-5678'
+      it 'phonenumberは9桁以下では購入できないこと' do
+        @buy_delivery.phonenumber = '090123456'
+        @buy_delivery.valid?
+        expect(@buy_delivery.errors.full_messages).to include('Phonenumber is invalid')
+      end
+      it 'phonenumberは12桁以上では購入できないこと' do
+        @buy_delivery.phonenumber = '090123456789'
         @buy_delivery.valid?
         expect(@buy_delivery.errors.full_messages).to include('Phonenumber is invalid')
       end
