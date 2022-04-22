@@ -1,9 +1,11 @@
 class BuysController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, only: :index
 
   def index
     @item = Item.find(params[:item_id])
     @buy_delivery = BuyDelivery.new
+
+    redirect_to root_path if (user_signed_in? && @item.buy.present?) || (current_user.id == @item.user.id)
   end
 
   def create
@@ -21,16 +23,17 @@ class BuysController < ApplicationController
   private
 
   def buy_params
-    params.require(:buy_delivery).permit(:postcode, :prefecture_id, :municipality, :address, :phonenumber, :building_name).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
+    params.require(:buy_delivery).permit(:postcode, :prefecture_id, :municipality, :address, :phonenumber, :building_name).merge(
+      user_id: current_user.id, item_id: @item.id, token: params[:token]
+    )
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
-        amount: @item.price,  
-        card: buy_params[:token],    
-        currency: 'jpy'                 
-      )
+      amount: @item.price,
+      card: buy_params[:token],
+      currency: 'jpy'
+    )
   end
-
 end
